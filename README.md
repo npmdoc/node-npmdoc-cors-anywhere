@@ -1,4 +1,7 @@
-# api documentation for  [cors-anywhere (v0.4.0)](https://github.com/Rob--W/cors-anywhere#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cors-anywhere.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cors-anywhere) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cors-anywhere.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cors-anywhere)
+# npmdoc-cors-anywhere
+
+#### basic api documentation for  [cors-anywhere (v0.4.0)](https://github.com/Rob--W/cors-anywhere#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cors-anywhere.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cors-anywhere) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cors-anywhere.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cors-anywhere)
+
 #### CORS Anywhere is a reverse proxy which adds CORS headers to the proxied request. Request URL is taken from the path
 
 [![NPM](https://nodei.co/npm/cors-anywhere.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/cors-anywhere)
@@ -74,7 +77,8 @@
         "test": "mocha ./test/test*.js --reporter spec",
         "test-coverage": "istanbul cover ./node_modules/.bin/_mocha -- test/test.js --reporter spec"
     },
-    "version": "0.4.0"
+    "version": "0.4.0",
+    "bin": {}
 }
 ```
 
