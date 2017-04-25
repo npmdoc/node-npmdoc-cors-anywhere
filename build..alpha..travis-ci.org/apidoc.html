@@ -72,19 +72,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.cors-anywhere.createServer">module cors-anywhere.createServer</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.cors-anywhere.createServer.createServer">
-            function <span class="apidocSignatureSpan">cors-anywhere.</span>createServer
-            <span class="apidocSignatureSpan">(options)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
 </ol></div>
 
 <div class="apidocSectionDiv">
@@ -93,76 +80,6 @@
 
     <h2>
         <a href="#apidoc.element.cors-anywhere.createServer" id="apidoc.element.cors-anywhere.createServer">
-        function <span class="apidocSignatureSpan">cors-anywhere.</span>createServer
-        <span class="apidocSignatureSpan">(options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function createServer(options) {
-  options = options || {};
-
-  // Default options:
-  var httpProxyOptions = {
-    xfwd: true,            // Append X-Forwarded-* headers
-  };
-  // Allow user to override defaults and add own options
-  if (options.httpProxyOptions) {
-    Object.keys(options.httpProxyOptions).forEach(function(option) {
-      httpProxyOptions[option] = options.httpProxyOptions[option];
-    });
-  }
-
-  var proxy = httpProxy.createServer(httpProxyOptions);
-  var requestHandler = getHandler(options, proxy);
-  var server;
-  if (options.httpsOptions) {
-    server = require(&#x27;https&#x27;).createServer(options.httpsOptions, requestHandler);
-  } else {
-    server = require(&#x27;http&#x27;).createServer(requestHandler);
-  }
-
-  // When the server fails, just show a 404 instead of Internal server error
-  proxy.on(&#x27;error&#x27;, function(err, req, res) {
-    if (res.headersSent) {
-      // This could happen when a protocol error occurs when an error occurs
-      // after the headers have been received (and forwarded). Do not write
-      // the headers because it would generate an error.
-      return;
-    }
-    res.writeHead(404, {&#x27;Access-Control-Allow-Origin&#x27;: &#x27;*&#x27;});
-    res.end(&#x27;Not found because of proxy error: &#x27; + err);
-  });
-  proxy.on(&#x27;proxyRes&#x27;, onProxyResponse);
-
-  return server;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-```javascript
-// Heroku defines the environment variable PORT, and requires the binding address to be 0.0.0.0
-var host = process.env.PORT ? &#x27;0.0.0.0&#x27; : &#x27;127.0.0.1&#x27;;
-var port = process.env.PORT || 8080;
-
-var cors_proxy = require(&#x27;cors-anywhere&#x27;);
-cors_proxy.<span class="apidocCodeKeywordSpan">createServer</span>({
-    originWhitelist: [], // Allow all origins
-    requireHeader: [&#x27;origin&#x27;, &#x27;x-requested-with&#x27;],
-    removeHeaders: [&#x27;cookie&#x27;, &#x27;cookie2&#x27;]
-}).listen(port, host, function() {
-    console.log(&#x27;Running CORS Anywhere on &#x27; + host + &#x27;:&#x27; + port);
-});
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.cors-anywhere.createServer" id="apidoc.module.cors-anywhere.createServer">module cors-anywhere.createServer</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.cors-anywhere.createServer.createServer" id="apidoc.element.cors-anywhere.createServer.createServer">
         function <span class="apidocSignatureSpan">cors-anywhere.</span>createServer
         <span class="apidocSignatureSpan">(options)</span>
         </a>
